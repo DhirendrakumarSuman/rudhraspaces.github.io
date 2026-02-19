@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Rudhra Spaces</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+.page-hero { padding: 180px 72px 80px; background: var(--ivory-deep); position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(30,20,16,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(30,20,16,.03) 1px, transparent 1px); background-size: 60px 60px; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(3rem,6vw,6rem); color: var(--walnut); line-height: 1.05; margin-top: 20px; }
+.page-hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--brass); }
+
+/* Filter Bar */
+.filter-bar {
+  background: var(--ivory);
+  padding: 0 72px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(184,136,42,.12);
+  overflow-x: auto;
+}
+.filter-tab {
+  padding: 20px 28px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--stone);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+.filter-tab:hover { color: var(--walnut); }
+.filter-tab.active { color: var(--brass); border-bottom-color: var(--brass); }
+
+/* Portfolio Grid */
+.portfolio-full { background: var(--ivory); padding: 60px 72px 100px; }
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+.pf-item { position: relative; overflow: hidden; cursor: pointer; }
+.pf-item:nth-child(1) { grid-column: span 8; height: 520px; }
+.pf-item:nth-child(2) { grid-column: span 4; height: 520px; }
+.pf-item:nth-child(3) { grid-column: span 4; height: 380px; }
+.pf-item:nth-child(4) { grid-column: span 4; height: 380px; }
+.pf-item:nth-child(5) { grid-column: span 4; height: 380px; }
+.pf-item:nth-child(6) { grid-column: span 6; height: 440px; }
+.pf-item:nth-child(7) { grid-column: span 6; height: 440px; }
+.pf-item:nth-child(8) { grid-column: span 4; height: 360px; }
+.pf-item:nth-child(9) { grid-column: span 4; height: 360px; }
+.pf-item:nth-child(10) { grid-column: span 4; height: 360px; }
+
+.pf-bg { position: absolute; inset: 0; transition: transform .9s var(--transition); }
+.pf-item:hover .pf-bg { transform: scale(1.06); }
+.pf-item:nth-child(1) .pf-bg { background: linear-gradient(140deg, #e0d5c8, #c8baa6); }
+.pf-item:nth-child(2) .pf-bg { background: linear-gradient(140deg, #d4c9ba, #bfaf98); }
+.pf-item:nth-child(3) .pf-bg { background: linear-gradient(140deg, #ccc0ae, #b5a590); }
+.pf-item:nth-child(4) .pf-bg { background: linear-gradient(140deg, #c8bfb2, #b0a08a); }
+.pf-item:nth-child(5) .pf-bg { background: linear-gradient(140deg, #c2b8aa, #a89888); }
+.pf-item:nth-child(6) .pf-bg { background: linear-gradient(140deg, #bdb2a5, #a09280); }
+.pf-item:nth-child(7) .pf-bg { background: linear-gradient(140deg, #b8aea2, #9e8e7c); }
+.pf-item:nth-child(8) .pf-bg { background: linear-gradient(140deg, #b4a89c, #9e8a78); }
+.pf-item:nth-child(9) .pf-bg { background: linear-gradient(140deg, #b0a498, #988672); }
+.pf-item:nth-child(10) .pf-bg { background: linear-gradient(140deg, #aca09c, #948270); }
+
+.pf-pattern { position: absolute; inset: 0; background-image: linear-gradient(rgba(30,20,16,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,20,16,.04) 1px, transparent 1px); background-size: 28px 28px; }
+.pf-art { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 6rem; color: var(--walnut); opacity: .07; }
+.pf-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,20,16,.9) 0%, transparent 50%); opacity: .6; transition: opacity .4s; }
+.pf-item:hover .pf-overlay { opacity: 1; }
+.pf-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px; transform: translateY(8px); transition: transform .4s var(--transition); }
+.pf-item:hover .pf-info { transform: translateY(0); }
+.pf-tag { font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--brass-pale); margin-bottom: 6px; }
+.pf-name { font-family: var(--font-display); font-size: 1.4rem; color: var(--ivory); margin-bottom: 5px; }
+.pf-detail { font-size: .68rem; color: rgba(247,243,237,.5); }
+.pf-action {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--brass-pale); opacity: 0; transition: opacity .4s .1s;
+}
+.pf-item:hover .pf-action { opacity: 1; }
+.pf-corner { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border: 1px solid rgba(247,243,237,.15); display: flex; align-items: center; justify-content: center; color: rgba(247,243,237,.5); font-size: .85rem; opacity: 0; transition: opacity .4s, background .3s; }
+.pf-item:hover .pf-corner { opacity: 1; }
+
+/* Stats band */
+.pf-stats { background: var(--walnut-mid); padding: 56px 72px; display: grid; grid-template-columns: repeat(4,1fr); }
+.pf-stat { text-align: center; padding: 16px; border-right: 1px solid rgba(247,243,237,.06); }
+.pf-stat:last-child { border-right: none; }
+.pf-stat-n { font-family: var(--font-display); font-size: 3rem; color: var(--brass-light); line-height: 1; margin-bottom: 6px; }
+.pf-stat-l { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(247,243,237,.35); }
+
+/* CTA */
+.pf-cta { background: var(--brass); padding: 72px; text-align: center; }
+.pf-cta h2 { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.2rem); color: var(--walnut); margin-bottom: 16px; }
+.pf-cta p { font-size: .9rem; color: rgba(30,20,16,.6); max-width: 440px; margin: 0 auto 32px; line-height: 1.8; }
+
+@media (max-width: 1100px) {
+  .page-hero { padding: 160px 36px 60px; }
+  .filter-bar { padding: 0 36px; }
+  .portfolio-full { padding: 48px 36px 80px; }
+  .pf-grid { grid-template-columns: 1fr 1fr; }
+  .pf-item:nth-child(n) { grid-column: span 1; height: 260px; }
+  .pf-item:nth-child(1) { grid-column: span 2; height: 380px; }
+  .pf-stats { padding: 48px 36px; grid-template-columns: 1fr 1fr; }
+  .pf-stat { border-right: none; border-bottom: 1px solid rgba(247,243,237,.06); }
+  .pf-cta { padding: 60px 36px; }
+}
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 24px 48px; }
+  .filter-bar { padding: 0 12px; }
+  .portfolio-full { padding: 36px 24px 60px; }
+  .pf-grid { grid-template-columns: 1fr; }
+  .pf-item:nth-child(n) { grid-column: span 1; height: 240px; }
+  .pf-item:nth-child(1) { height: 320px; }
+  .pf-stats { grid-template-columns: 1fr 1fr; padding: 48px 24px; }
+  .pf-cta { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose">✕</button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a>
+</div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 200 200" fill="none"><polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/><rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/><line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><circle cx="100" cy="100" r="3.5" fill="#B8882A"/></svg>
+    <div class="logo-wordmark"><span class="logo-wordmark-top">Rudhra Spaces</span><span class="logo-wordmark-bottom">Design & Advisory</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html" class="active">Portfolio</a></li><li><a href="contact.html" class="nav-cta">Consult Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div style="position:relative;z-index:1;max-width:660px;">
+    <div class="section-tag reveal"><div class="tag-line"></div><span>Our Work</span></div>
+    <h1 class="reveal rd1">Spaces That<br>Speak for<br><em>Themselves.</em></h1>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <button class="filter-tab active" onclick="filterProjects(this,'all')">All Projects</button>
+  <button class="filter-tab" onclick="filterProjects(this,'interior')">Interior Design</button>
+  <button class="filter-tab" onclick="filterProjects(this,'advisory')">Advisory</button>
+  <button class="filter-tab" onclick="filterProjects(this,'brokerage')">Brokerage</button>
+  <button class="filter-tab" onclick="filterProjects(this,'renovation')">Renovation</button>
+</div>
+
+<section class="portfolio-full">
+  <div class="pf-grid">
+    <div class="pf-item reveal" data-category="interior">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">I</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Interior Design · Residential</div>
+        <div class="pf-name">The Sharma Residence, Dwarka</div>
+        <div class="pf-detail">3,200 Sq Ft · 4 BHK · 2024 · ₹38L Project Value</div>
+        <div class="pf-action">View Project →</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd1" data-category="advisory">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">II</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Real Estate Advisory · Commercial</div>
+        <div class="pf-name">Meridian Business Hub, Gurgaon</div>
+        <div class="pf-detail">₹4.2Cr Transaction · Advisory + Representation · 2024</div>
+        <div class="pf-action">View Case →</div>
+      </div>
+    </div>
+    <div class="pf-item reveal" data-category="interior">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">III</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Interior Design · Luxury</div>
+        <div class="pf-name">Skyline Penthouse, Noida</div>
+        <div class="pf-detail">2,800 Sq Ft · 2023</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd1" data-category="brokerage">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">IV</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Property Brokerage · Residential</div>
+        <div class="pf-name">Heritage Bungalow, Lutyens Delhi</div>
+        <div class="pf-detail">₹7Cr Transaction · 2023</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd2" data-category="interior">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">V</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Interior Design · Villa</div>
+        <div class="pf-name">The Kapoor Villa, Faridabad</div>
+        <div class="pf-detail">4,500 Sq Ft · 2024</div>
+      </div>
+    </div>
+    <div class="pf-item reveal" data-category="interior">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">VI</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Interior Design · Office</div>
+        <div class="pf-name">Zenith Corporate Offices, Gurgaon</div>
+        <div class="pf-detail">6,000 Sq Ft · 2024</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd1" data-category="renovation">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">VII</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Renovation · Residential</div>
+        <div class="pf-name">Lodi Colony Townhouse, Delhi</div>
+        <div class="pf-detail">2,200 Sq Ft Renovation · 2023</div>
+      </div>
+    </div>
+    <div class="pf-item reveal" data-category="advisory">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">VIII</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Advisory · NRI Investment</div>
+        <div class="pf-name">NRI Portfolio, Multiple Sites</div>
+        <div class="pf-detail">₹12Cr Portfolio · 4 Properties · 2024</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd1" data-category="interior">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">IX</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Interior Design · Boutique</div>
+        <div class="pf-name">Aria Retail Store, Select City Walk</div>
+        <div class="pf-detail">1,800 Sq Ft · 2023</div>
+      </div>
+    </div>
+    <div class="pf-item reveal rd2" data-category="brokerage">
+      <div class="pf-bg"></div><div class="pf-pattern"></div><div class="pf-art">X</div><div class="pf-overlay"></div>
+      <div class="pf-corner">↗</div>
+      <div class="pf-info">
+        <div class="pf-tag">Brokerage · Commercial</div>
+        <div class="pf-name">DLF Cyber Hub Office Space</div>
+        <div class="pf-detail">₹2.8Cr Lease · Client Representation · 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="pf-stats">
+  <div class="pf-stat reveal"><div class="pf-stat-n" data-count="150" data-suffix="+">0+</div><div class="pf-stat-l">Projects Completed</div></div>
+  <div class="pf-stat reveal rd1"><div class="pf-stat-n" data-count="80" data-suffix="Cr+" data-prefix="₹">₹0Cr+</div><div class="pf-stat-l">Transaction Value</div></div>
+  <div class="pf-stat reveal rd2"><div class="pf-stat-n" data-count="9" data-suffix="+">0+</div><div class="pf-stat-l">Years Experience</div></div>
+  <div class="pf-stat reveal rd3"><div class="pf-stat-n" data-count="200" data-suffix="+">0+</div><div class="pf-stat-l">Happy Clients</div></div>
+</div>
+
+<!-- CTA -->
+<div class="pf-cta">
+  <h2 class="reveal">Have a Space in Mind?</h2>
+  <p class="reveal rd1">Tell us about your project. We'll come back within 24 hours with initial thoughts and a free consultation offer.</p>
+  <a href="contact.html" class="btn-dark reveal rd2"><span>Start the Conversation</span></a>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><svg class="logo-svg" viewBox="0 0 200 200" fill="none"><polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/><rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/><circle cx="100" cy="100" r="3.5" fill="#B8882A"/></svg><div class="logo-wordmark"><span class="logo-wordmark-top">Rudhra Spaces</span><span class="logo-wordmark-bottom">Design & Advisory</span></div></a>
+      <p>Premium interior design and real estate advisory. Delhi NCR.</p>
+      <div class="footer-social"><a href="#" class="social-btn">Ig</a><a href="#" class="social-btn">Fb</a><a href="https://wa.me/919910183805" class="social-btn">Wa</a></div>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Design</a></li><li><a href="services.html">Real Estate Advisory</a></li><li><a href="services.html">Property Brokerage</a></li><li><a href="services.html">Client Representation</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>Dwarka Sector 26, New Delhi</p><br><a href="tel:+919910183805">+91 99101 83805</a><br><a href="mailto:spaces@rudhraconstruction.in">spaces@rudhraconstruction.in</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Rudhra Spaces. A Rudhra Group Company.</p><p><a href="https://rudhraconstruction.in">rudhraconstruction.in</a></p></div>
+</footer>
+<a href="https://wa.me/919910183805" class="wa-float" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.857a.5.5 0 0 0 .609.61l6.098-1.498A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.144-1.428l-.369-.22-3.818.938.99-3.72-.241-.381A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
+<script src="main.js"></script>
+<script>
+function filterProjects(btn, cat) {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pf-item').forEach(item => {
+    if (cat === 'all' || item.dataset.category === cat) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

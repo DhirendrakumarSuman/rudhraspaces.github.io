@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Rudhra Spaces</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+.page-hero {
+  padding: 180px 72px 100px;
+  background: var(--ivory-deep);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(30,20,16,.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30,20,16,.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.page-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  color: var(--walnut);
+  line-height: 1.05;
+  margin-top: 20px;
+}
+.page-hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--brass); }
+.page-hero-visual {
+  position: absolute;
+  right: 72px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 18rem;
+  color: var(--walnut);
+  opacity: .03;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Story */
+.story {
+  background: var(--ivory);
+  padding: 100px 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.story-visual {
+  position: relative;
+}
+.story-frame {
+  border: 1px solid rgba(184,136,42,.2);
+  padding: 60px;
+  background: linear-gradient(135deg, var(--ivory-deep), var(--ivory-dark));
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-frame::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px; right: -12px; bottom: -12px;
+  border: 1px solid rgba(184,136,42,.1);
+  z-index: -1;
+}
+.story-frame-content { text-align: center; }
+.story-frame-logo {
+  width: 100px; height: 100px;
+  margin: 0 auto 24px;
+}
+.story-frame-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--walnut);
+  margin-bottom: 8px;
+}
+.story-frame-sub {
+  font-size: .68rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.story-badge {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 100px; height: 100px;
+  background: var(--walnut);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.story-badge strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--brass-light);
+  line-height: 1;
+}
+.story-badge span { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(247,243,237,.5); }
+
+.story-content {}
+.story-content h2 { margin: 20px 0 28px; }
+.story-content p { font-size: .95rem; line-height: 1.95; color: var(--stone); margin-bottom: 20px; }
+.story-content p strong { color: var(--walnut); font-weight: 400; }
+.story-quote {
+  border-left: 3px solid var(--brass);
+  padding: 20px 24px;
+  margin: 32px 0;
+  background: rgba(184,136,42,.04);
+}
+.story-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+.story-quote cite { font-size: .7rem; color: var(--brass); letter-spacing: .12em; font-style: normal; display: block; margin-top: 10px; }
+
+/* Values */
+.values {
+  background: var(--walnut);
+  padding: 100px 72px;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 60px;
+  background: rgba(247,243,237,.06);
+}
+.value-card {
+  background: var(--walnut);
+  padding: 52px 44px;
+  position: relative;
+  transition: background .4s;
+}
+.value-card:hover { background: var(--walnut-light); }
+.value-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .8rem;
+  color: var(--brass);
+  margin-bottom: 20px;
+}
+.value-icon { font-size: 2rem; margin-bottom: 16px; opacity: .5; }
+.value-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ivory);
+  margin-bottom: 14px;
+}
+.value-desc { font-size: .82rem; line-height: 1.8; color: rgba(247,243,237,.45); }
+.value-line {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--brass);
+  transition: width .5s var(--transition);
+}
+.value-card:hover .value-line { width: 100%; }
+
+/* Team */
+.team {
+  background: var(--ivory-deep);
+  padding: 100px 72px;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+}
+.team-card {
+  border: 1px solid rgba(184,136,42,.12);
+  overflow: hidden;
+  transition: all .4s;
+  cursor: pointer;
+}
+.team-card:hover { border-color: rgba(184,136,42,.3); transform: translateY(-4px); }
+.team-visual {
+  height: 280px;
+  background: linear-gradient(135deg, var(--ivory-dark), #c8baa8);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.team-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(30,20,16,.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30,20,16,.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.team-initials {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--walnut);
+  opacity: .15;
+  position: relative;
+  z-index: 1;
+}
+.team-info { padding: 28px 32px; }
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--walnut);
+  margin-bottom: 4px;
+}
+.team-role {
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 12px;
+}
+.team-bio { font-size: .78rem; line-height: 1.7; color: var(--stone); }
+
+/* Why Us */
+.why-us {
+  background: var(--ivory);
+  padding: 100px 72px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+.why-list { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+.why-item {
+  display: flex;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(184,136,42,.12);
+  transition: all .3s;
+}
+.why-item:last-child { border-bottom: none; }
+.why-item:hover { padding-left: 8px; }
+.why-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--brass);
+  font-size: .9rem;
+  min-width: 32px;
+  padding-top: 2px;
+}
+.why-text h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--walnut);
+  margin-bottom: 6px;
+}
+.why-text p { font-size: .8rem; line-height: 1.7; color: var(--stone); }
+.why-right { position: relative; }
+.why-box {
+  border: 1px solid rgba(184,136,42,.18);
+  padding: 60px;
+  background: var(--ivory-deep);
+  position: relative;
+}
+.why-box-big {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--brass);
+  opacity: .12;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.why-box h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--walnut);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.why-box p { font-size: .88rem; line-height: 1.9; color: var(--stone); }
+
+@media (max-width: 1024px) {
+  .page-hero { padding: 160px 36px 80px; }
+  .story { grid-template-columns: 1fr; padding: 80px 36px; gap: 48px; }
+  .values { padding: 80px 36px; }
+  .values-grid { grid-template-columns: 1fr; }
+  .team { padding: 80px 36px; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .why-us { grid-template-columns: 1fr; padding: 80px 36px; gap: 40px; }
+  .page-hero-visual { display: none; }
+}
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 24px 60px; }
+  .values { padding: 60px 24px; }
+  .team { padding: 60px 24px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .why-us { padding: 60px 24px; }
+  .story { padding: 60px 24px; }
+  .story-frame { padding: 40px 24px; min-height: 360px; }
+}
+</style>
+</head>
+<body>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose">✕</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/>
+      <rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/>
+      <line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/>
+      <circle cx="100" cy="100" r="3.5" fill="#B8882A"/>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="logo-wordmark-top">Rudhra Spaces</span>
+      <span class="logo-wordmark-bottom">Design & Advisory</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html" class="nav-cta">Consult Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag reveal"><div class="tag-line"></div><span>Our Story</span></div>
+    <h1 class="reveal rd1">Built on<br><em>Craft,</em><br>Guided by Trust</h1>
+  </div>
+  <div class="page-hero-visual">About</div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="story-visual reveal">
+    <div class="story-frame">
+      <div class="story-frame-content">
+        <svg class="story-frame-logo" viewBox="0 0 200 200" fill="none">
+          <polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/>
+          <rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/>
+          <line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/>
+          <line x1="62" y1="72" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/><line x1="72" y1="62" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+          <line x1="128" y1="62" x2="128" y2="72" stroke="#B8882A" stroke-width="1.5"/><line x1="128" y1="72" x2="138" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+          <line x1="62" y1="128" x2="72" y2="128" stroke="#B8882A" stroke-width="1.5"/><line x1="72" y1="128" x2="72" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+          <line x1="128" y1="128" x2="138" y2="128" stroke="#B8882A" stroke-width="1.5"/><line x1="128" y1="128" x2="128" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="3.5" fill="#B8882A"/>
+        </svg>
+        <div class="story-frame-title">Rudhra Spaces</div>
+        <div class="story-frame-sub">Est. 2015 · Delhi NCR</div>
+      </div>
+      <div class="story-badge">
+        <strong>9+</strong>
+        <span>Years</span>
+      </div>
+    </div>
+  </div>
+  <div class="story-content">
+    <div class="section-tag reveal"><div class="tag-line"></div><span>Our Foundation</span></div>
+    <h2 class="section-heading reveal rd1">The <em>Story</em><br>Behind the Spaces</h2>
+    <p class="reveal rd2">Rudhra Spaces was founded as the <strong>creative and advisory conscience of Rudhra Group.</strong> While Rudhra Construction builds the structures, Rudhra Spaces breathes life and intention into them — crafting interiors, advising on investments, and representing clients in one of India's most complex real estate markets.</p>
+    <p class="reveal rd3">We believe that <strong>every space tells a story</strong> — of the people who inhabit it, the decisions that shaped it, and the vision that drove its creation. Our role is to ensure that story is worth telling.</p>
+    <div class="story-quote reveal rd4">
+      <p>"We started Rudhra Spaces because we kept seeing clients who deserved better — better advice, better design, better results. We built this firm to be that better option."</p>
+      <cite>— Founding Team, Rudhra Spaces</cite>
+    </div>
+    <a href="contact.html" class="btn-dark reveal rd4"><span>Work With Us</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="section-tag reveal"><div class="tag-line" style="background:var(--brass-light);"></div><span style="color:var(--brass-light);">Our Principles</span></div>
+  <h2 class="section-heading reveal rd1" style="color:var(--ivory);">What We<br><em>Stand For</em></h2>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01.</div>
+      <div class="value-icon">◎</div>
+      <h3 class="value-title">Client First. Always.</h3>
+      <p class="value-desc">Every recommendation we make is driven by what is best for you — not what is convenient for us. Transparency is non-negotiable here.</p>
+      <div class="value-line"></div>
+    </div>
+    <div class="value-card reveal rd1">
+      <div class="value-num">02.</div>
+      <div class="value-icon">✦</div>
+      <h3 class="value-title">Design With Purpose</h3>
+      <p class="value-desc">We never design for aesthetics alone. Every choice we make — material, colour, layout — serves both beauty and function in equal measure.</p>
+      <div class="value-line"></div>
+    </div>
+    <div class="value-card reveal rd2">
+      <div class="value-num">03.</div>
+      <div class="value-icon">⬡</div>
+      <h3 class="value-title">Expertise Without Ego</h3>
+      <p class="value-desc">We bring deep knowledge to every engagement — but we listen deeply first. The best outcomes come from collaboration, not prescription.</p>
+      <div class="value-line"></div>
+    </div>
+    <div class="value-card reveal rd3">
+      <div class="value-num">04.</div>
+      <div class="value-icon">◈</div>
+      <h3 class="value-title">Relationships Over Transactions</h3>
+      <p class="value-desc">Most of our clients return to us. Some have been with us for years. We build trust that outlasts any single project or deal.</p>
+      <div class="value-line"></div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-num">05.</div>
+      <div class="value-icon">▽</div>
+      <h3 class="value-title">Rooted in India</h3>
+      <p class="value-desc">We bring global design sensibility grounded in deep local knowledge — of the market, the culture, the context, and the communities we serve.</p>
+      <div class="value-line"></div>
+    </div>
+    <div class="value-card reveal rd1">
+      <div class="value-num">06.</div>
+      <div class="value-icon">○</div>
+      <h3 class="value-title">Detail is Everything</h3>
+      <p class="value-desc">The difference between good and exceptional is in the details. We obsess over them — in design, in advice, in documentation, in every handover.</p>
+      <div class="value-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="section-tag reveal"><div class="tag-line"></div><span>Our Team</span></div>
+  <h2 class="section-heading reveal rd1">The People <em>Behind</em><br>Every Space</h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-visual"><div class="team-initials">RS</div></div>
+      <div class="team-info">
+        <div class="team-name">Founding Director</div>
+        <div class="team-role">Interior Design & Client Relations</div>
+        <p class="team-bio">Oversees all interior design projects and leads client interactions with a vision for spaces that combine luxury with livability.</p>
+      </div>
+    </div>
+    <div class="team-card reveal rd1">
+      <div class="team-visual"><div class="team-initials">AK</div></div>
+      <div class="team-info">
+        <div class="team-name">Head of Advisory</div>
+        <div class="team-role">Real Estate & Investment Counsel</div>
+        <p class="team-bio">Brings 12+ years of Delhi NCR market expertise to every advisory engagement, guiding clients toward intelligent property decisions.</p>
+      </div>
+    </div>
+    <div class="team-card reveal rd2">
+      <div class="team-visual"><div class="team-initials">PM</div></div>
+      <div class="team-info">
+        <div class="team-name">Lead Designer</div>
+        <div class="team-role">Space Planning & 3D Visualisation</div>
+        <p class="team-bio">Creates stunning 3D walkthroughs and space plans that allow clients to experience their home before a single piece is moved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div>
+    <div class="section-tag reveal"><div class="tag-line"></div><span>Why Rudhra Spaces</span></div>
+    <h2 class="section-heading reveal rd1">Why Clients<br><em>Choose Us</em></h2>
+    <div class="why-list">
+      <div class="why-item reveal rd1">
+        <div class="why-num">i.</div>
+        <div class="why-text">
+          <h4>Backed by Construction Expertise</h4>
+          <p>Uniquely, our advisory is backed by Rudhra Construction's 9+ years of building experience — meaning we understand property value at a structural level.</p>
+        </div>
+      </div>
+      <div class="why-item reveal rd2">
+        <div class="why-num">ii.</div>
+        <div class="why-text">
+          <h4>No Conflicts of Interest</h4>
+          <p>We represent you — never the developer or seller. Our brokerage fees are transparent, and our advice is never swayed by third-party incentives.</p>
+        </div>
+      </div>
+      <div class="why-item reveal rd3">
+        <div class="why-num">iii.</div>
+        <div class="why-text">
+          <h4>Design + Advisory Under One Roof</h4>
+          <p>You don't need a designer and an advisor separately. We combine both into a single, seamless service — saving you time, money, and complexity.</p>
+        </div>
+      </div>
+      <div class="why-item reveal rd4">
+        <div class="why-num">iv.</div>
+        <div class="why-text">
+          <h4>Post-Project Support</h4>
+          <p>Our relationship doesn't end at handover. We provide ongoing support for any adjustments, repairs, or future projects — indefinitely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="why-right reveal rd2">
+    <div class="why-box">
+      <div class="why-box-big">RS</div>
+      <h3>A Different Kind of Firm</h3>
+      <p>Most design firms stop at delivery. Most advisory firms stop at transaction. Rudhra Spaces is built to be with you for the entire journey — from the first sketch to years of living beautifully in the space we've created together.</p>
+      <br>
+      <a href="contact.html" class="btn-dark" style="margin-top:8px;"><span>Start the Conversation</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <svg class="logo-svg" viewBox="0 0 200 200" fill="none"><polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/><rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/><circle cx="100" cy="100" r="3.5" fill="#B8882A"/></svg>
+        <div class="logo-wordmark"><span class="logo-wordmark-top">Rudhra Spaces</span><span class="logo-wordmark-bottom">Design & Advisory</span></div>
+      </a>
+      <p>The premium interior design and real estate advisory arm of Rudhra Group. Delhi NCR.</p>
+      <div class="footer-social"><a href="#" class="social-btn">Ig</a><a href="#" class="social-btn">Fb</a><a href="https://wa.me/919910183805" class="social-btn">Wa</a></div>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Design</a></li><li><a href="services.html">Real Estate Advisory</a></li><li><a href="services.html">Property Brokerage</a></li><li><a href="services.html">Client Representation</a></li><li><a href="services.html">Vastu Consultation</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>Plot No. 324, Dwarka Sector 26<br>New Delhi — 110077</p><br><a href="tel:+919910183805">+91 99101 83805</a><br><a href="mailto:spaces@rudhraconstruction.in">spaces@rudhraconstruction.in</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Rudhra Spaces. A Rudhra Group Company.</p>
+    <p><a href="https://rudhraconstruction.in">rudhraconstruction.in</a></p>
+  </div>
+</footer>
+<a href="https://wa.me/919910183805" class="wa-float" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.857a.5.5 0 0 0 .609.61l6.098-1.498A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.144-1.428l-.369-.22-3.818.938.99-3.72-.241-.381A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
+<script src="main.js"></script>
+</body>
+</html>

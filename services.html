@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Rudhra Spaces</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+.page-hero {
+  padding: 180px 72px 100px;
+  background: var(--walnut);
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(247,243,237,.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(247,243,237,.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem,6vw,6rem);
+  color: var(--ivory);
+  line-height: 1.05; margin-top: 20px;
+}
+.page-hero h1 em { font-family: var(--font-serif); font-style: italic; color: var(--brass-light); }
+.page-hero-sub { font-size: 1rem; line-height: 1.9; color: rgba(247,243,237,.5); max-width: 480px; margin-top: 24px; }
+.page-hero-visual {
+  position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-display); font-size: 18rem; color: var(--ivory); opacity: .02; pointer-events: none;
+}
+
+/* Service Detail Cards */
+.services-full { background: var(--ivory); padding: 0; }
+.service-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.service-block:nth-child(even) { direction: rtl; }
+.service-block:nth-child(even) > * { direction: ltr; }
+.sb-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+.service-block:nth-child(1) .sb-visual { background: linear-gradient(135deg, #e8dfd4, #cfc2b0); }
+.service-block:nth-child(2) .sb-visual { background: linear-gradient(135deg, #d4cbbf, #b8a896); }
+.service-block:nth-child(3) .sb-visual { background: linear-gradient(135deg, #c8bfb4, #a89e90); }
+.service-block:nth-child(4) .sb-visual { background: linear-gradient(135deg, #c0b4a8, #a09282); }
+.service-block:nth-child(5) .sb-visual { background: linear-gradient(135deg, #b8aea4, #988878); }
+.sb-visual-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.sb-visual-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(30,20,16,.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30,20,16,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.sb-big-icon {
+  font-size: 8rem; color: var(--walnut); opacity: .1;
+  position: relative; z-index: 1;
+}
+.sb-number {
+  position: absolute; top: 32px; left: 32px;
+  font-family: var(--font-display); font-size: 8rem;
+  color: var(--walnut); opacity: .07; line-height: 1;
+}
+.sb-content {
+  padding: 72px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--ivory);
+}
+.service-block:nth-child(even) .sb-content { background: var(--ivory-deep); }
+.sb-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: var(--walnut); margin: 20px 0 20px;
+  line-height: 1.1;
+}
+.sb-content h2 em { font-family: var(--font-serif); font-style: italic; color: var(--brass); }
+.sb-body { font-size: .9rem; line-height: 1.95; color: var(--stone); margin-bottom: 32px; }
+.sb-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.sb-feature {
+  display: flex; align-items: center; gap: 14px;
+  font-size: .8rem; color: var(--walnut);
+}
+.sb-feature::before { content: '—'; color: var(--brass); font-size: .7rem; }
+.sb-price {
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 14px 24px;
+  background: rgba(184,136,42,.08);
+  border: 1px solid rgba(184,136,42,.2);
+  margin-bottom: 24px;
+}
+.sb-price span { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); }
+.sb-price strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--brass); }
+
+/* Add-ons */
+.addons { background: var(--ivory-deep); padding: 80px 72px; }
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(184,136,42,.1);
+  margin-top: 48px;
+  border: 1px solid rgba(184,136,42,.1);
+}
+.addon-item {
+  background: var(--ivory-deep);
+  padding: 36px 32px;
+  transition: background .3s;
+}
+.addon-item:hover { background: var(--ivory); }
+.addon-icon { font-size: 1.6rem; margin-bottom: 14px; opacity: .5; }
+.addon-title { font-family: var(--font-display); font-size: 1.05rem; color: var(--walnut); margin-bottom: 8px; }
+.addon-desc { font-size: .75rem; line-height: 1.6; color: var(--stone); }
+
+/* Packages */
+.packages { background: var(--walnut); padding: 80px 72px; }
+.packages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+.pkg-card {
+  border: 1px solid rgba(247,243,237,.08);
+  padding: 48px 40px;
+  position: relative;
+  transition: all .4s;
+}
+.pkg-card:hover { border-color: rgba(184,136,42,.4); background: rgba(247,243,237,.02); }
+.pkg-card.featured {
+  border-color: var(--brass);
+  background: rgba(184,136,42,.06);
+}
+.pkg-badge {
+  position: absolute; top: -1px; right: 28px;
+  padding: 6px 16px;
+  background: var(--brass);
+  color: var(--walnut);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.pkg-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--ivory); margin-bottom: 8px; }
+.pkg-tagline { font-size: .75rem; color: rgba(247,243,237,.4); letter-spacing: .08em; margin-bottom: 28px; }
+.pkg-price {
+  font-family: var(--font-display);
+  font-size: 2.2rem; color: var(--brass-light);
+  margin-bottom: 4px;
+}
+.pkg-price-note { font-size: .68rem; color: rgba(247,243,237,.3); margin-bottom: 32px; }
+.pkg-divider { height: 1px; background: rgba(247,243,237,.08); margin-bottom: 24px; }
+.pkg-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+.pkg-feature { display: flex; gap: 10px; font-size: .78rem; color: rgba(247,243,237,.6); align-items: flex-start; }
+.pkg-feature::before { content: '✓'; color: var(--brass); min-width: 14px; }
+.pkg-feature.muted { color: rgba(247,243,237,.25); }
+.pkg-feature.muted::before { content: '—'; color: rgba(247,243,237,.2); }
+
+/* Process CTA */
+.svc-cta {
+  background: var(--brass);
+  padding: 72px;
+  text-align: center;
+}
+.svc-cta h2 { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); color: var(--walnut); margin-bottom: 20px; }
+.svc-cta p { font-size: .95rem; color: rgba(30,20,16,.65); max-width: 500px; margin: 0 auto 36px; line-height: 1.8; }
+.btn-walnut {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 40px; background: var(--walnut); color: var(--ivory);
+  text-decoration: none; font-size: .73rem; letter-spacing: .22em; text-transform: uppercase;
+  transition: background .4s;
+}
+.btn-walnut:hover { background: var(--walnut-light); }
+
+@media (max-width: 1100px) {
+  .service-block { grid-template-columns: 1fr; }
+  .service-block:nth-child(even) { direction: ltr; }
+  .sb-content { padding: 48px 36px; }
+  .addons { padding: 60px 36px; }
+  .addons-grid { grid-template-columns: 1fr 1fr; }
+  .packages { padding: 60px 36px; }
+  .packages-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .svc-cta { padding: 60px 36px; }
+  .page-hero { padding: 160px 36px 80px; }
+  .page-hero-visual { display: none; }
+}
+@media (max-width: 768px) {
+  .page-hero { padding: 140px 24px 60px; }
+  .sb-content { padding: 40px 24px; }
+  .addons { padding: 60px 24px; }
+  .addons-grid { grid-template-columns: 1fr; }
+  .packages { padding: 60px 24px; }
+  .svc-cta { padding: 60px 24px; }
+  .sb-visual { min-height: 280px; }
+}
+</style>
+</head>
+<body>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose">✕</button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="contact.html">Contact</a>
+</div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 200 200" fill="none"><polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/><rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/><line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><circle cx="100" cy="100" r="3.5" fill="#B8882A"/></svg>
+    <div class="logo-wordmark"><span class="logo-wordmark-top">Rudhra Spaces</span><span class="logo-wordmark-bottom">Design & Advisory</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html" class="nav-cta">Consult Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div style="position:relative;z-index:1;">
+    <div class="section-tag reveal"><div class="tag-line" style="background:var(--brass-light);"></div><span style="color:var(--brass-light);">What We Offer</span></div>
+    <h1 class="reveal rd1">Every <em>Service.</em><br>Exceptional<br>Every Time.</h1>
+    <p class="page-hero-sub reveal rd2">From the first sketch of an interior to the final seal on a property transaction — we offer the full spectrum of design and advisory services, all under one roof.</p>
+  </div>
+  <div class="page-hero-visual">Svc</div>
+</section>
+
+<section class="services-full">
+  <!-- 1. Interior Design -->
+  <div class="service-block">
+    <div class="sb-visual">
+      <div class="sb-number">01</div>
+      <div class="sb-visual-inner"><div class="sb-big-icon">✦</div></div>
+    </div>
+    <div class="sb-content">
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Service 01</span></div>
+      <h2 class="reveal rd1">Interior <em>Design</em><br>& Space Planning</h2>
+      <p class="sb-body reveal rd2">We create interiors that are as intelligent as they are beautiful — spaces that respond to how you actually live, work, and feel. From moodboards and 3D visualisations through to final styling and furnishing, our end-to-end interior design service handles everything.</p>
+      <div class="sb-features reveal rd3">
+        <div class="sb-feature">3D Visualisation & Walkthroughs</div>
+        <div class="sb-feature">Custom Furniture & Joinery Design</div>
+        <div class="sb-feature">Material, Finish & Colour Curation</div>
+        <div class="sb-feature">Lighting Design & Electrical Planning</div>
+        <div class="sb-feature">Vastu-Compliant Space Planning</div>
+        <div class="sb-feature">Vendor Management & Procurement</div>
+      </div>
+      <div class="sb-price reveal rd4">
+        <span>Starting from</span>
+        <strong>₹120 / Sq Ft</strong>
+      </div>
+      <a href="contact.html" class="btn-dark reveal rd4"><span>Get a Quote</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 2. Real Estate Advisory -->
+  <div class="service-block">
+    <div class="sb-visual">
+      <div class="sb-number">02</div>
+      <div class="sb-visual-inner"><div class="sb-big-icon">◎</div></div>
+    </div>
+    <div class="sb-content">
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Service 02</span></div>
+      <h2 class="reveal rd1">Real Estate <em>Advisory</em><br>& Investment Counsel</h2>
+      <p class="sb-body reveal rd2">The Delhi NCR property market is complex, opaque, and constantly shifting. We bring 9+ years of market intelligence to cut through the noise — helping you buy, sell, or invest with clarity and confidence. Our advice is always structured around your goals, not ours.</p>
+      <div class="sb-features reveal rd3">
+        <div class="sb-feature">Market Analysis & Property Valuation</div>
+        <div class="sb-feature">Investment Portfolio Strategy</div>
+        <div class="sb-feature">Site Assessment & Due Diligence</div>
+        <div class="sb-feature">Rental Yield Optimisation</div>
+        <div class="sb-feature">Builder & Developer Evaluation</div>
+        <div class="sb-feature">NRI Investment Advisory</div>
+      </div>
+      <a href="contact.html" class="btn-dark reveal rd4"><span>Book Advisory Session</span></a>
+    </div>
+  </div>
+
+  <!-- 3. Brokerage -->
+  <div class="service-block">
+    <div class="sb-visual">
+      <div class="sb-number">03</div>
+      <div class="sb-visual-inner"><div class="sb-big-icon">⬡</div></div>
+    </div>
+    <div class="sb-content">
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Service 03</span></div>
+      <h2 class="reveal rd1">Property <em>Brokerage</em></h2>
+      <p class="sb-body reveal rd2">Unlike traditional brokers who serve both buyer and seller, we work exclusively for one party per transaction. Our brokerage is built around earning your trust — not earning the highest commission. We source, negotiate, and close deals in your best interest, always.</p>
+      <div class="sb-features reveal rd3">
+        <div class="sb-feature">Exclusive Buyer Representation</div>
+        <div class="sb-feature">Property Sourcing Across NCR</div>
+        <div class="sb-feature">Negotiation & Price Discovery</div>
+        <div class="sb-feature">Legal & Title Verification</div>
+        <div class="sb-feature">Home Loan Liaison</div>
+        <div class="sb-feature">Registration & Documentation Support</div>
+      </div>
+      <a href="contact.html" class="btn-dark reveal rd4"><span>Find My Property</span></a>
+    </div>
+  </div>
+
+  <!-- 4. Client Representation -->
+  <div class="service-block">
+    <div class="sb-visual">
+      <div class="sb-number">04</div>
+      <div class="sb-visual-inner"><div class="sb-big-icon">◈</div></div>
+    </div>
+    <div class="sb-content">
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Service 04</span></div>
+      <h2 class="reveal rd1">Client <em>Representation</em><br>& Liaison</h2>
+      <p class="sb-body reveal rd2">For clients who need a trusted expert to manage all interactions on their behalf — developers, contractors, government offices, banks, and legal teams. We act as your single point of contact, filtering noise and ensuring every stakeholder is accountable to your timeline and standards.</p>
+      <div class="sb-features reveal rd3">
+        <div class="sb-feature">Developer Negotiations</div>
+        <div class="sb-feature">Government & RERA Liaison</div>
+        <div class="sb-feature">Contractor Management</div>
+        <div class="sb-feature">Payment Schedule Monitoring</div>
+        <div class="sb-feature">Dispute Resolution Support</div>
+        <div class="sb-feature">NRI Representation</div>
+      </div>
+      <a href="contact.html" class="btn-dark reveal rd4"><span>Appoint Us</span></a>
+    </div>
+  </div>
+
+  <!-- 5. Vastu -->
+  <div class="service-block">
+    <div class="sb-visual">
+      <div class="sb-number">05</div>
+      <div class="sb-visual-inner"><div class="sb-big-icon">◇</div></div>
+    </div>
+    <div class="sb-content">
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Service 05</span></div>
+      <h2 class="reveal rd1">Vastu <em>Consultation</em><br>& Remediation</h2>
+      <p class="sb-body reveal rd2">We integrate Vastu Shastra with modern design science — creating spaces that are harmonious, positive, and energetically sound without compromise on contemporary aesthetics. Whether you're buying, building, or renovating, our Vastu advisory ensures your space supports your wellbeing.</p>
+      <div class="sb-features reveal rd3">
+        <div class="sb-feature">Vastu Site Analysis & Report</div>
+        <div class="sb-feature">Orientation & Layout Optimisation</div>
+        <div class="sb-feature">Colour, Material & Element Guidance</div>
+        <div class="sb-feature">Vastu Remediation Without Demolition</div>
+        <div class="sb-feature">New Construction Vastu Planning</div>
+      </div>
+      <a href="contact.html" class="btn-dark reveal rd4"><span>Book Vastu Consultation</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="addons">
+  <div class="section-tag reveal"><div class="tag-line"></div><span>Additional Services</span></div>
+  <h2 class="section-heading reveal rd1">Add-On <em>Specialisations</em></h2>
+  <div class="addons-grid">
+    <div class="addon-item reveal"><div class="addon-icon">▽</div><div class="addon-title">Office Interiors</div><p class="addon-desc">Premium corporate and co-working space design that boosts productivity and reflects brand identity.</p></div>
+    <div class="addon-item reveal rd1"><div class="addon-icon">○</div><div class="addon-title">Retail Design</div><p class="addon-desc">Store layouts, lighting, and visual merchandising designed to convert footfall into sales.</p></div>
+    <div class="addon-item reveal rd2"><div class="addon-icon">△</div><div class="addon-title">Renovation Planning</div><p class="addon-desc">Pre-renovation advisory and design service — getting the scope, budget and plan exactly right before work begins.</p></div>
+    <div class="addon-item reveal rd3"><div class="addon-icon">□</div><div class="addon-title">Show Flat Design</div><p class="addon-desc">For developers — aspirational show flat design that drives conversions and elevates project perception.</p></div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages">
+  <div class="section-tag reveal"><div class="tag-line" style="background:var(--brass-light);"></div><span style="color:var(--brass-light);">Engagement Models</span></div>
+  <h2 class="section-heading reveal rd1" style="color:var(--ivory);">Choose Your <em>Package</em></h2>
+  <div class="packages-grid">
+    <div class="pkg-card reveal">
+      <div class="pkg-name">Essentials</div>
+      <div class="pkg-tagline">For first-time clients & focused needs</div>
+      <div class="pkg-price">₹50K+</div>
+      <div class="pkg-price-note">Starting price · Varies by scope</div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-features">
+        <div class="pkg-feature">Design consultation (3 sessions)</div>
+        <div class="pkg-feature">Space planning & layout</div>
+        <div class="pkg-feature">Moodboard & material palette</div>
+        <div class="pkg-feature">Vendor recommendations</div>
+        <div class="pkg-feature muted">3D Visualisation</div>
+        <div class="pkg-feature muted">On-site supervision</div>
+        <div class="pkg-feature muted">Full project management</div>
+      </div>
+      <a href="contact.html" class="btn-outline" style="color:var(--ivory);border-color:rgba(247,243,237,.2);width:100%;justify-content:center;">Get Started</a>
+    </div>
+    <div class="pkg-card featured reveal rd1">
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-name">Signature</div>
+      <div class="pkg-tagline">Our most comprehensive design experience</div>
+      <div class="pkg-price">₹1.5L+</div>
+      <div class="pkg-price-note">Starting price · ₹120/sq ft upwards</div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-features">
+        <div class="pkg-feature">Unlimited design consultations</div>
+        <div class="pkg-feature">Full space planning & Vastu review</div>
+        <div class="pkg-feature">3D visualisation & walkthroughs</div>
+        <div class="pkg-feature">Custom furniture design</div>
+        <div class="pkg-feature">Vendor management & procurement</div>
+        <div class="pkg-feature">On-site supervision</div>
+        <div class="pkg-feature muted">Dedicated project manager</div>
+      </div>
+      <a href="contact.html" class="btn-walnut" style="width:100%;justify-content:center;">Get Started</a>
+    </div>
+    <div class="pkg-card reveal rd2">
+      <div class="pkg-name">Prestige</div>
+      <div class="pkg-tagline">For HNIs & landmark projects</div>
+      <div class="pkg-price">Custom</div>
+      <div class="pkg-price-note">Bespoke pricing · Full service</div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-features">
+        <div class="pkg-feature">Everything in Signature</div>
+        <div class="pkg-feature">Dedicated senior designer</div>
+        <div class="pkg-feature">Dedicated project manager</div>
+        <div class="pkg-feature">International material sourcing</div>
+        <div class="pkg-feature">Lifestyle & hospitality consulting</div>
+        <div class="pkg-feature">Post-handover concierge (1 year)</div>
+        <div class="pkg-feature">Priority scheduling & response</div>
+      </div>
+      <a href="contact.html" class="btn-outline" style="color:var(--ivory);border-color:rgba(247,243,237,.2);width:100%;justify-content:center;">Enquire</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="svc-cta">
+  <h2 class="reveal">Not Sure Which Service<br>You Need?</h2>
+  <p class="reveal rd1">Book a free 30-minute discovery call. We'll understand your situation and recommend exactly the right level of support — no upselling, no pressure.</p>
+  <a href="contact.html" class="btn-walnut reveal rd2"><span>Book Free Discovery Call</span></a>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><svg class="logo-svg" viewBox="0 0 200 200" fill="none"><polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/><rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/><circle cx="100" cy="100" r="3.5" fill="#B8882A"/></svg><div class="logo-wordmark"><span class="logo-wordmark-top">Rudhra Spaces</span><span class="logo-wordmark-bottom">Design & Advisory</span></div></a>
+      <p>The premium interior design and real estate advisory arm of Rudhra Group.</p>
+      <div class="footer-social"><a href="#" class="social-btn">Ig</a><a href="#" class="social-btn">Fb</a><a href="https://wa.me/919910183805" class="social-btn">Wa</a></div>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Design</a></li><li><a href="services.html">Real Estate Advisory</a></li><li><a href="services.html">Property Brokerage</a></li><li><a href="services.html">Client Representation</a></li><li><a href="services.html">Vastu Consultation</a></li></ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>Plot No. 324, Dwarka Sector 26<br>New Delhi — 110077</p><br><a href="tel:+919910183805">+91 99101 83805</a><br><a href="mailto:spaces@rudhraconstruction.in">spaces@rudhraconstruction.in</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Rudhra Spaces. A Rudhra Group Company.</p><p><a href="https://rudhraconstruction.in">rudhraconstruction.in</a></p></div>
+</footer>
+<a href="https://wa.me/919910183805" class="wa-float" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.857a.5.5 0 0 0 .609.61l6.098-1.498A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.144-1.428l-.369-.22-3.818.938.99-3.72-.241-.381A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
+<script src="main.js"></script>
+</body>
+</html>

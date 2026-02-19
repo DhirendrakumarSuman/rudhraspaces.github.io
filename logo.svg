@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Outer octagonal ring - architecture symbol -->
+  <polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32"
+    stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <!-- Inner geometric — floor plan abstraction -->
+  <rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/>
+  <!-- Cross division — room plan -->
+  <line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.8" opacity="0.6"/>
+  <line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.8" opacity="0.6"/>
+  <!-- Corner accent marks -->
+  <line x1="62" y1="72" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="72" y1="62" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="128" y1="62" x2="128" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="128" y1="72" x2="138" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="62" y1="128" x2="72" y2="128" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="72" y1="128" x2="72" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="128" y1="128" x2="138" y2="128" stroke="#B8882A" stroke-width="1.5"/>
+  <line x1="128" y1="128" x2="128" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+  <!-- Center dot -->
+  <circle cx="100" cy="100" r="4" fill="#B8882A"/>
+  <!-- Compass point top -->
+  <line x1="100" y1="22" x2="100" y2="40" stroke="#B8882A" stroke-width="1" opacity="0.4"/>
+  <polygon points="100,18 97,26 103,26" fill="#B8882A" opacity="0.5"/>
+</svg>

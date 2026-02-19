@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudhra Spaces — Interior Design & Advisory · Delhi NCR</title>
+<meta name="description" content="Rudhra Spaces — Premium interior design, real estate advisory and property consultation firm. The design arm of Rudhra Group, Delhi NCR.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+/* ═══ HOME PAGE STYLES ═══ */
+
+/* ─── HERO ─── */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--ivory);
+}
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: .04;
+  background-image:
+    linear-gradient(var(--walnut) 1px, transparent 1px),
+    linear-gradient(90deg, var(--walnut) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+/* Large decorative arch shape */
+.hero-arch {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38vw;
+  height: 38vw;
+  max-width: 560px;
+  max-height: 560px;
+}
+.hero-arch-outer {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(184,136,42,.18);
+  border-radius: 50% 50% 0 0;
+}
+.hero-arch-inner {
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgba(184,136,42,.1);
+  border-radius: 50% 50% 0 0;
+}
+.hero-arch-fill {
+  position: absolute;
+  inset: 56px;
+  background: linear-gradient(180deg, rgba(184,136,42,.05) 0%, transparent 80%);
+  border-radius: 50% 50% 0 0;
+}
+.hero-arch-line {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(184,136,42,.3), transparent);
+}
+/* Floating label on arch */
+.hero-arch-label {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.hero-arch-label .big-num {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 7vw, 8rem);
+  color: var(--walnut);
+  opacity: .05;
+  line-height: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 72px;
+  max-width: 680px;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fUp .9s .2s var(--transition) forwards;
+}
+.hero-eyebrow-line { width: 48px; height: 1px; background: var(--brass); }
+.hero-eyebrow span {
+  font-size: .65rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 6vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  color: var(--walnut);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fUp .9s .4s var(--transition) forwards;
+}
+.hero-title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--brass);
+}
+.hero-sub {
+  font-size: .98rem;
+  line-height: 1.9;
+  color: var(--stone);
+  max-width: 440px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fUp .9s .6s var(--transition) forwards;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fUp .9s .8s var(--transition) forwards;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 44px; left: 72px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fIn .9s 1.4s forwards;
+}
+.hero-scroll-hint span {
+  font-size: .62rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+}
+.scroll-pill {
+  width: 24px; height: 40px;
+  border: 1px solid rgba(184,136,42,.3);
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-pill::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 8px;
+  background: var(--brass);
+  border-radius: 2px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0%,100% { top: 6px; opacity: 1; }
+  50% { top: 22px; opacity: .3; }
+}
+/* Side vertical text */
+.hero-side-text {
+  position: absolute;
+  right: 36px; bottom: 40%;
+  transform: rotate(90deg) translateX(50%);
+  transform-origin: right center;
+  font-size: .58rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  opacity: 0;
+  animation: fIn 1s 1.6s forwards;
+}
+
+@keyframes fUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ─── MARQUEE BAR ─── */
+.marquee-bar {
+  background: var(--walnut);
+  padding: 16px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  gap: 0;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  padding: 0 40px;
+  font-size: .62rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(247,243,237,.35);
+  white-space: nowrap;
+  border-right: 1px solid rgba(247,243,237,.08);
+}
+.marquee-item.accent { color: var(--brass-light); }
+
+/* ─── INTRO STRIP ─── */
+.intro {
+  background: var(--ivory);
+  padding: 100px 72px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+}
+.intro-left {}
+.intro-large {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.2;
+  color: var(--walnut);
+  margin-top: 24px;
+}
+.intro-right p {
+  font-size: 1rem;
+  line-height: 1.95;
+  color: var(--stone);
+  margin-bottom: 24px;
+}
+.intro-right p strong { color: var(--walnut); font-weight: 400; }
+.intro-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 40px;
+  border: 1px solid rgba(184,136,42,.15);
+}
+.intro-pillar {
+  padding: 24px 28px;
+  border-right: 1px solid rgba(184,136,42,.15);
+  border-bottom: 1px solid rgba(184,136,42,.15);
+  transition: background .4s;
+}
+.intro-pillar:nth-child(even) { border-right: none; }
+.intro-pillar:nth-child(3), .intro-pillar:nth-child(4) { border-bottom: none; }
+.intro-pillar:hover { background: rgba(184,136,42,.04); }
+.intro-pillar-num {
+  font-family: var(--font-serif);
+  font-size: .8rem;
+  color: var(--brass);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.intro-pillar h4 {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--walnut);
+  letter-spacing: .04em;
+  margin-bottom: 4px;
+}
+.intro-pillar p { font-size: .73rem; color: var(--stone); line-height: 1.6; }
+
+/* ─── SERVICES PREVIEW ─── */
+.services-preview {
+  background: var(--ivory-deep);
+  padding: 100px 0;
+}
+.sp-header {
+  padding: 0 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+.sp-header-right {
+  max-width: 280px;
+  text-align: right;
+}
+.sp-header-right p { font-size: .85rem; line-height: 1.8; color: var(--stone); }
+.services-row {
+  display: flex;
+  overflow: hidden;
+}
+.service-panel {
+  flex: 1;
+  min-height: 480px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px 36px;
+  border-right: 1px solid rgba(184,136,42,.12);
+  cursor: pointer;
+  overflow: hidden;
+  transition: flex .6s var(--transition);
+}
+.service-panel:last-child { border-right: none; }
+.service-panel:hover { flex: 2.5; }
+.sp-bg {
+  position: absolute;
+  inset: 0;
+  transition: opacity .5s;
+}
+.service-panel:nth-child(1) .sp-bg { background: linear-gradient(160deg, #e8dfd4, #d4c9b8); }
+.service-panel:nth-child(2) .sp-bg { background: linear-gradient(160deg, #d4cbbf, #c5baa8); }
+.service-panel:nth-child(3) .sp-bg { background: linear-gradient(160deg, #c2b8aa, #b5a896); }
+.service-panel:nth-child(4) .sp-bg { background: linear-gradient(160deg, #b8ae9f, #a89e8e); }
+.sp-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,20,16,.8) 0%, rgba(30,20,16,.1) 60%, transparent);
+}
+.sp-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(30,20,16,.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30,20,16,.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.sp-num {
+  position: absolute;
+  top: 28px; right: 28px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .8rem;
+  color: rgba(247,243,237,.4);
+}
+.sp-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  opacity: .7;
+  transition: opacity .4s;
+}
+.service-panel:hover .sp-icon { opacity: 1; }
+.sp-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ivory);
+  line-height: 1.1;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+.sp-desc {
+  font-size: .78rem;
+  color: rgba(247,243,237,.65);
+  line-height: 1.7;
+  max-width: 260px;
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s var(--transition);
+}
+.service-panel:hover .sp-desc { max-height: 100px; }
+.sp-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brass-pale);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .4s .1s;
+}
+.service-panel:hover .sp-link { opacity: 1; }
+
+/* ─── PORTFOLIO PREVIEW ─── */
+.portfolio-preview {
+  background: var(--ivory);
+  padding: 100px 72px;
+}
+.pp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+.portfolio-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.pm-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.pm-card:nth-child(1) { grid-column: span 5; height: 400px; }
+.pm-card:nth-child(2) { grid-column: span 7; height: 400px; }
+.pm-card:nth-child(3) { grid-column: span 4; height: 320px; }
+.pm-card:nth-child(4) { grid-column: span 4; height: 320px; }
+.pm-card:nth-child(5) { grid-column: span 4; height: 320px; }
+.pm-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform .8s var(--transition);
+}
+.pm-card:hover .pm-bg { transform: scale(1.06); }
+.pm-card:nth-child(1) .pm-bg { background: linear-gradient(140deg, #e0d5c8, #c9bba9); }
+.pm-card:nth-child(2) .pm-bg { background: linear-gradient(140deg, #d6c9b8, #bfaf9a); }
+.pm-card:nth-child(3) .pm-bg { background: linear-gradient(140deg, #ccc0ae, #b8a892); }
+.pm-card:nth-child(4) .pm-bg { background: linear-gradient(140deg, #c4b7a4, #b0a08c); }
+.pm-card:nth-child(5) .pm-bg { background: linear-gradient(140deg, #bdb0a0, #a89887); }
+.pm-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--walnut);
+  opacity: .08;
+}
+.pm-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,20,16,.85) 0%, transparent 55%);
+  opacity: .7;
+  transition: opacity .4s;
+}
+.pm-card:hover .pm-overlay { opacity: 1; }
+.pm-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 32px;
+  transform: translateY(10px);
+  transition: transform .4s var(--transition);
+}
+.pm-card:hover .pm-info { transform: translateY(0); }
+.pm-tag {
+  font-size: .6rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--brass-pale);
+  margin-bottom: 6px;
+}
+.pm-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ivory);
+  margin-bottom: 6px;
+}
+.pm-meta { font-size: .68rem; color: rgba(247,243,237,.55); }
+.pm-arrow {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(247,243,237,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ivory);
+  font-size: .9rem;
+  opacity: 0;
+  transition: opacity .4s, background .3s, border-color .3s;
+}
+.pm-card:hover .pm-arrow { opacity: 1; }
+.pm-card:hover .pm-arrow:hover { background: var(--brass); border-color: var(--brass); }
+
+/* ─── STATS ─── */
+.stats-bar {
+  background: var(--walnut-mid);
+  padding: 72px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-block {
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid rgba(247,243,237,.06);
+  position: relative;
+}
+.stat-block:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 3.8rem;
+  color: var(--brass-light);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(247,243,237,.4);
+}
+.stat-sub { font-size: .72rem; color: rgba(247,243,237,.25); margin-top: 4px; }
+
+/* ─── PROCESS ─── */
+.process {
+  background: var(--ivory-deep);
+  padding: 100px 72px;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 64px;
+  position: relative;
+}
+.process-grid::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(184,136,42,.25), transparent);
+}
+.process-step {
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+}
+.ps-circle {
+  width: 72px; height: 72px;
+  border: 1px solid rgba(184,136,42,.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  background: var(--ivory-deep);
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--brass);
+  transition: all .4s;
+}
+.process-step:hover .ps-circle {
+  background: var(--walnut);
+  color: var(--brass-pale);
+  border-color: var(--walnut);
+}
+.ps-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--walnut);
+  margin-bottom: 10px;
+}
+.ps-desc { font-size: .75rem; line-height: 1.7; color: var(--stone); }
+
+/* ─── TESTIMONIAL ─── */
+.testimonial-section {
+  background: var(--walnut);
+  padding: 100px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.testimonial-section::before {
+  content: '"';
+  position: absolute;
+  left: 60px; top: 40px;
+  font-family: var(--font-display);
+  font-size: 20rem;
+  color: var(--brass);
+  opacity: .04;
+  line-height: 1;
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 56px;
+}
+.testi-card {
+  background: rgba(247,243,237,.04);
+  border: 1px solid rgba(247,243,237,.07);
+  padding: 44px;
+  position: relative;
+  transition: all .4s;
+}
+.testi-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 0;
+  background: var(--brass);
+  transition: height .5s var(--transition);
+}
+.testi-card:hover { border-color: rgba(184,136,42,.25); }
+.testi-card:hover::before { height: 100%; }
+.testi-stars { color: var(--brass-light); font-size: .8rem; letter-spacing: 3px; margin-bottom: 20px; }
+.testi-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: rgba(247,243,237,.75);
+  margin-bottom: 28px;
+}
+.testi-author { display: flex; align-items: center; gap: 16px; }
+.testi-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,136,42,.3);
+  background: rgba(184,136,42,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--brass-light);
+}
+.testi-name { font-size: .85rem; color: var(--ivory); font-weight: 400; margin-bottom: 2px; }
+.testi-role { font-size: .68rem; letter-spacing: .1em; color: rgba(247,243,237,.35); }
+
+/* ─── ATELIER LINK ─── */
+.atelier-link-strip {
+  background: var(--brass);
+  padding: 0 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+}
+.als-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--walnut);
+  letter-spacing: .02em;
+}
+.als-sub {
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(30,20,16,.6);
+  margin-top: 4px;
+}
+.als-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 32px;
+  background: var(--walnut);
+  color: var(--ivory);
+  text-decoration: none;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  transition: background .4s;
+}
+.als-btn:hover { background: var(--walnut-light); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .intro { padding: 80px 36px; gap: 48px; }
+  .sp-header { padding: 0 36px; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .sp-header-right { text-align: left; }
+  .services-row { flex-direction: column; }
+  .service-panel { min-height: 200px; flex: unset !important; }
+  .service-panel:hover { flex: unset; }
+  .sp-desc { max-height: 100px; }
+  .sp-link { opacity: 1; }
+  .portfolio-preview { padding: 80px 36px; }
+  .pp-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .portfolio-masonry { grid-template-columns: 1fr 1fr; }
+  .pm-card:nth-child(1), .pm-card:nth-child(2) { grid-column: span 1; height: 280px; }
+  .pm-card:nth-child(3), .pm-card:nth-child(4), .pm-card:nth-child(5) { grid-column: span 1; height: 240px; }
+  .stats-bar { padding: 60px 36px; grid-template-columns: 1fr 1fr; }
+  .stat-block { border-right: none; border-bottom: 1px solid rgba(247,243,237,.06); padding: 28px; }
+  .process { padding: 80px 36px; }
+  .process-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .process-grid::before { display: none; }
+  .testimonial-section { padding: 80px 36px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .atelier-link-strip { padding: 32px 36px; flex-direction: column; gap: 24px; text-align: center; }
+}
+@media (max-width: 768px) {
+  .hero-content { padding: 0 24px; }
+  .hero-arch { display: none; }
+  .hero-side-text { display: none; }
+  .hero-scroll-hint { left: 24px; }
+  .intro { grid-template-columns: 1fr; padding: 60px 24px; gap: 32px; }
+  .intro-pillars { grid-template-columns: 1fr; }
+  .portfolio-masonry { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .atelier-link-strip { padding: 32px 24px; }
+  .testimonial-section { padding: 60px 24px; }
+  .portfolio-preview { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" id="menuClose">✕</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/>
+      <rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/>
+      <line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/>
+      <line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/>
+      <line x1="62" y1="72" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/><line x1="72" y1="62" x2="72" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+      <line x1="128" y1="62" x2="128" y2="72" stroke="#B8882A" stroke-width="1.5"/><line x1="128" y1="72" x2="138" y2="72" stroke="#B8882A" stroke-width="1.5"/>
+      <line x1="62" y1="128" x2="72" y2="128" stroke="#B8882A" stroke-width="1.5"/><line x1="72" y1="128" x2="72" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+      <line x1="128" y1="128" x2="138" y2="128" stroke="#B8882A" stroke-width="1.5"/><line x1="128" y1="128" x2="128" y2="138" stroke="#B8882A" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="3.5" fill="#B8882A"/>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="logo-wordmark-top">Rudhra Spaces</span>
+      <span class="logo-wordmark-bottom">Design & Advisory</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html" class="nav-cta">Consult Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-arch">
+    <div class="hero-arch-outer"></div>
+    <div class="hero-arch-inner"></div>
+    <div class="hero-arch-fill"></div>
+    <div class="hero-arch-line"></div>
+    <div class="hero-arch-label"><div class="big-num">RS</div></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Interior · Advisory · Real Estate</span>
+    </div>
+    <h1 class="hero-title">
+      Spaces That<br>
+      Tell Your<br>
+      <em>Story.</em>
+    </h1>
+    <p class="hero-sub">
+      Rudhra Spaces is a premium interior design and real estate advisory firm — the boutique design arm of Rudhra Group, crafting spaces of exceptional beauty and purpose across Delhi NCR.
+    </p>
+    <div class="hero-actions">
+      <a href="portfolio.html" class="btn-dark">
+        <span>View Our Work</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="contact.html" class="btn-outline">Begin a Consultation</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-pill"></div>
+    <span>Scroll to Explore</span>
+  </div>
+  <div class="hero-side-text">Delhi · Gurgaon · Noida · Faridabad</div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item accent">Interior Design</span>
+    <span class="marquee-item">Real Estate Advisory</span>
+    <span class="marquee-item accent">Space Planning</span>
+    <span class="marquee-item">Property Brokerage</span>
+    <span class="marquee-item accent">Client Representation</span>
+    <span class="marquee-item">Vastu Consultation</span>
+    <span class="marquee-item accent">Project Management</span>
+    <span class="marquee-item">Investment Counsel</span>
+    <span class="marquee-item accent">Interior Design</span>
+    <span class="marquee-item">Real Estate Advisory</span>
+    <span class="marquee-item accent">Space Planning</span>
+    <span class="marquee-item">Property Brokerage</span>
+    <span class="marquee-item accent">Client Representation</span>
+    <span class="marquee-item">Vastu Consultation</span>
+    <span class="marquee-item accent">Project Management</span>
+    <span class="marquee-item">Investment Counsel</span>
+  </div>
+</div>
+
+<!-- ─── INTRO ─── -->
+<section class="intro">
+  <div class="intro-left">
+    <div class="section-tag reveal">
+      <div class="tag-line"></div>
+      <span>Who We Are</span>
+    </div>
+    <h2 class="section-heading intro-large reveal rd1">
+      Where <em>Design</em><br>Meets<br>Deep Expertise
+    </h2>
+  </div>
+  <div class="intro-right">
+    <p class="reveal rd1">
+      Rudhra Spaces was born from a single conviction — that <strong>beautiful spaces and intelligent property decisions should not be privileges of the few.</strong> We are the premium advisory and interior design arm of Rudhra Construction, bringing together creative vision and real estate expertise under one roof.
+    </p>
+    <p class="reveal rd2">
+      From designing a family's dream home to advising developers on high-value property acquisitions, we serve every client with the same commitment: <strong>exceptional outcomes, personalised to you.</strong>
+    </p>
+    <div class="intro-pillars reveal rd3">
+      <div class="intro-pillar">
+        <div class="intro-pillar-num">i.</div>
+        <h4>Design-Led Thinking</h4>
+        <p>Aesthetics and function in perfect balance</p>
+      </div>
+      <div class="intro-pillar">
+        <div class="intro-pillar-num">ii.</div>
+        <h4>Expert Advisory</h4>
+        <p>Market intelligence for every decision</p>
+      </div>
+      <div class="intro-pillar">
+        <div class="intro-pillar-num">iii.</div>
+        <h4>End-to-End Service</h4>
+        <p>From concept to keys — we are with you</p>
+      </div>
+      <div class="intro-pillar">
+        <div class="intro-pillar-num">iv.</div>
+        <h4>Backed by Rudhra</h4>
+        <p>₹45Cr+ in construction expertise behind us</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES PREVIEW ─── -->
+<section class="services-preview">
+  <div class="sp-header">
+    <div>
+      <div class="section-tag reveal"><div class="tag-line"></div><span>What We Do</span></div>
+      <h2 class="section-heading reveal rd1">Our <em>Services</em></h2>
+    </div>
+    <div class="sp-header-right reveal rd2">
+      <p>Hover each panel to discover the full spectrum of what Rudhra Spaces offers.</p>
+      <a href="services.html" style="color:var(--brass);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-top:16px;">All Services →</a>
+    </div>
+  </div>
+  <div class="services-row">
+    <div class="service-panel reveal">
+      <div class="sp-bg"></div><div class="sp-overlay"></div><div class="sp-pattern"></div>
+      <div class="sp-num">01</div>
+      <div class="sp-icon">✦</div>
+      <h3 class="sp-title">Interior<br>Design</h3>
+      <p class="sp-desc">From concept moodboards to final furnishing — we create spaces that are as liveable as they are beautiful, perfectly tuned to your taste.</p>
+      <a href="services.html" class="sp-link">Explore → </a>
+    </div>
+    <div class="service-panel reveal rd1">
+      <div class="sp-bg"></div><div class="sp-overlay"></div><div class="sp-pattern"></div>
+      <div class="sp-num">02</div>
+      <div class="sp-icon">◎</div>
+      <h3 class="sp-title">Real Estate<br>Advisory</h3>
+      <p class="sp-desc">Navigate the complex Delhi NCR market with confidence. We provide transparent, data-backed advice on buying, selling, and investment.</p>
+      <a href="services.html" class="sp-link">Explore →</a>
+    </div>
+    <div class="service-panel reveal rd2">
+      <div class="sp-bg"></div><div class="sp-overlay"></div><div class="sp-pattern"></div>
+      <div class="sp-num">03</div>
+      <div class="sp-icon">⬡</div>
+      <h3 class="sp-title">Property<br>Brokerage</h3>
+      <p class="sp-desc">We represent your interests — not the developer's. Our brokerage is built entirely around finding you the right property at the right price.</p>
+      <a href="services.html" class="sp-link">Explore →</a>
+    </div>
+    <div class="service-panel reveal rd3">
+      <div class="sp-bg"></div><div class="sp-overlay"></div><div class="sp-pattern"></div>
+      <div class="sp-num">04</div>
+      <div class="sp-icon">◈</div>
+      <h3 class="sp-title">Client<br>Representation</h3>
+      <p class="sp-desc">From site visits and negotiations to legal documentation — we stand in your corner, ensuring every deal protects your interests.</p>
+      <a href="services.html" class="sp-link">Explore →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO PREVIEW ─── -->
+<section class="portfolio-preview">
+  <div class="pp-header">
+    <div>
+      <div class="section-tag reveal"><div class="tag-line"></div><span>Recent Work</span></div>
+      <h2 class="section-heading reveal rd1">Selected <em>Projects</em></h2>
+    </div>
+    <a href="portfolio.html" class="btn-outline reveal rd2">View All Projects</a>
+  </div>
+  <div class="portfolio-masonry">
+    <div class="pm-card reveal">
+      <div class="pm-bg"></div><div class="pm-art">I</div><div class="pm-overlay"></div>
+      <div class="pm-info">
+        <div class="pm-tag">Interior Design · Dwarka</div>
+        <div class="pm-name">The Sharma Residence</div>
+        <div class="pm-meta">3,200 Sq Ft · 2024</div>
+      </div>
+      <div class="pm-arrow">↗</div>
+    </div>
+    <div class="pm-card reveal rd1">
+      <div class="pm-bg"></div><div class="pm-art">II</div><div class="pm-overlay"></div>
+      <div class="pm-info">
+        <div class="pm-tag">Advisory · Gurgaon</div>
+        <div class="pm-name">Meridian Commercial Hub</div>
+        <div class="pm-meta">₹4.2Cr Advisory · 2024</div>
+      </div>
+      <div class="pm-arrow">↗</div>
+    </div>
+    <div class="pm-card reveal">
+      <div class="pm-bg"></div><div class="pm-art">III</div><div class="pm-overlay"></div>
+      <div class="pm-info">
+        <div class="pm-tag">Interior · Noida</div>
+        <div class="pm-name">Luxury Penthouse</div>
+        <div class="pm-meta">2,800 Sq Ft · 2023</div>
+      </div>
+      <div class="pm-arrow">↗</div>
+    </div>
+    <div class="pm-card reveal rd1">
+      <div class="pm-bg"></div><div class="pm-art">IV</div><div class="pm-overlay"></div>
+      <div class="pm-info">
+        <div class="pm-tag">Brokerage · Delhi</div>
+        <div class="pm-name">Heritage Bungalow</div>
+        <div class="pm-meta">₹7Cr Transaction · 2023</div>
+      </div>
+      <div class="pm-arrow">↗</div>
+    </div>
+    <div class="pm-card reveal rd2">
+      <div class="pm-bg"></div><div class="pm-art">V</div><div class="pm-overlay"></div>
+      <div class="pm-info">
+        <div class="pm-tag">Interior · Faridabad</div>
+        <div class="pm-name">The Kapoor Villa</div>
+        <div class="pm-meta">4,500 Sq Ft · 2024</div>
+      </div>
+      <div class="pm-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="stat-block reveal">
+    <div class="stat-num" data-count="150" data-suffix="+">0+</div>
+    <div class="stat-label">Spaces Designed</div>
+    <div class="stat-sub">Across Delhi NCR</div>
+  </div>
+  <div class="stat-block reveal rd1">
+    <div class="stat-num" data-count="80" data-suffix="Cr+" data-prefix="₹">₹0Cr+</div>
+    <div class="stat-label">Advisory Value</div>
+    <div class="stat-sub">Transactions closed</div>
+  </div>
+  <div class="stat-block reveal rd2">
+    <div class="stat-num" data-count="100" data-suffix="%">0%</div>
+    <div class="stat-label">Client Satisfaction</div>
+    <div class="stat-sub">Verified reviews</div>
+  </div>
+  <div class="stat-block reveal rd3">
+    <div class="stat-num" data-count="9" data-suffix="+">0+</div>
+    <div class="stat-label">Years of Excellence</div>
+    <div class="stat-sub">Est. 2015</div>
+  </div>
+</div>
+
+<!-- ─── PROCESS ─── -->
+<section class="process">
+  <div class="section-tag reveal"><div class="tag-line"></div><span>How We Work</span></div>
+  <h2 class="section-heading reveal rd1">Your Journey,<br><em>Carefully Mapped</em></h2>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="ps-circle">01</div>
+      <h3 class="ps-title">Discovery Call</h3>
+      <p class="ps-desc">A complimentary 60-minute session — we listen deeply to understand your vision, lifestyle, and goals.</p>
+    </div>
+    <div class="process-step reveal rd1">
+      <div class="ps-circle">02</div>
+      <h3 class="ps-title">Space Analysis</h3>
+      <p class="ps-desc">Site visit, measurements, orientation study, and Vastu analysis to inform every decision we make.</p>
+    </div>
+    <div class="process-step reveal rd2">
+      <div class="ps-circle">03</div>
+      <h3 class="ps-title">Concept Design</h3>
+      <p class="ps-desc">Moodboards, 3D visualisations, material palettes — your future space, brought to life before a single purchase.</p>
+    </div>
+    <div class="process-step reveal rd3">
+      <div class="ps-circle">04</div>
+      <h3 class="ps-title">Execution</h3>
+      <p class="ps-desc">Weekly updates, sourcing, vendor management, and quality checks — we handle everything so you don't have to.</p>
+    </div>
+    <div class="process-step reveal rd4">
+      <div class="ps-circle">05</div>
+      <h3 class="ps-title">Reveal & Handover</h3>
+      <p class="ps-desc">A curated reveal of your completed space, with post-handover support and care guidance included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonial-section">
+  <div class="section-tag reveal">
+    <div class="tag-line" style="background:var(--brass-light);"></div>
+    <span style="color:var(--brass-light);">Client Stories</span>
+  </div>
+  <h2 class="section-heading reveal rd1" style="color:var(--ivory);">What Our <em>Clients Say</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Rudhra Spaces transformed our flat into a home we had only imagined. The attention to detail was extraordinary — every corner felt considered, every material perfectly chosen. We could not be more thrilled."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div><div class="testi-name">Rashi Singh</div><div class="testi-role">Homeowner · Dwarka, New Delhi</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal rd1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Their advisory team saved us from a very poor investment decision. The market knowledge and transparent counsel were unlike anything we had experienced before. We ultimately found a far better property."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">V</div>
+        <div><div class="testi-name">Vikram Malhotra</div><div class="testi-role">Investor · Gurgaon</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The brokerage experience was completely stress-free. They handled negotiations, documentation, and the entire legal process — we just showed up to sign. Exceptional professionals, every single one of them."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div><div class="testi-name">Ananya Kapoor</div><div class="testi-role">Buyer · Noida</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal rd1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"We engaged Rudhra Spaces for our office interior and they delivered something beyond our imagination — on time, on budget, and spectacularly well-designed. Our team loves coming to work now."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div><div class="testi-name">Sanjay Mehta</div><div class="testi-role">CEO · Faridabad</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RUDHRA GROUP LINK ─── -->
+<div class="atelier-link-strip">
+  <div>
+    <div class="als-text">Part of the Rudhra Group</div>
+    <div class="als-sub">Rudhra Spaces × Rudhra Construction</div>
+  </div>
+  <a href="https://rudhraconstruction.in" target="_blank" class="als-btn">
+    Visit Rudhra Construction →
+  </a>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <svg class="logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,10 155,32 178,87 178,113 155,168 100,190 45,168 22,113 22,87 45,32" stroke="#B8882A" stroke-width="1.2" fill="none" opacity="0.4"/>
+          <rect x="62" y="62" width="76" height="76" stroke="#B8882A" stroke-width="1.5" fill="none"/>
+          <line x1="100" y1="62" x2="100" y2="138" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/><line x1="62" y1="100" x2="138" y2="100" stroke="#B8882A" stroke-width="0.7" opacity="0.5"/>
+          <circle cx="100" cy="100" r="3.5" fill="#B8882A"/>
+        </svg>
+        <div class="logo-wordmark">
+          <span class="logo-wordmark-top">Rudhra Spaces</span>
+          <span class="logo-wordmark-bottom">Design & Advisory</span>
+        </div>
+      </a>
+      <p>The premium interior design and real estate advisory arm of Rudhra Group. Crafting spaces of exceptional beauty across Delhi NCR since 2015.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">Ig</a>
+        <a href="#" class="social-btn">Fb</a>
+        <a href="https://wa.me/919910183805" class="social-btn">Wa</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Interior Design</a></li>
+        <li><a href="services.html">Real Estate Advisory</a></li>
+        <li><a href="services.html">Property Brokerage</a></li>
+        <li><a href="services.html">Client Representation</a></li>
+        <li><a href="services.html">Vastu Consultation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <p>Plot No. 324, Dwarka Sector 26<br>New Delhi — 110077</p>
+      <br>
+      <a href="tel:+919910183805">+91 99101 83805</a><br>
+      <a href="mailto:spaces@rudhraconstruction.in">spaces@rudhraconstruction.in</a>
+      <br><br>
+      <p style="opacity:.4;font-size:.7rem;">Mon – Sat · 10am – 7pm</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Rudhra Spaces. A Rudhra Group Company. All rights reserved.</p>
+    <p>Designed with purpose · <a href="https://rudhraconstruction.in">rudhraconstruction.in</a></p>
+  </div>
+</footer>
+
+<a href="https://wa.me/919910183805" class="wa-float" target="_blank">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.855L.057 23.857a.5.5 0 0 0 .609.61l6.098-1.498A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.144-1.428l-.369-.22-3.818.938.99-3.72-.241-.381A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
+</a>
+
+<script src="main.js"></script>
+</body>
+</html>
